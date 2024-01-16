@@ -10,7 +10,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $currentUser = auth()->user();
+        $users = User::where('id', '!=', $currentUser->id)->get();
         return view('admin.users', compact('users'));
     }
 
