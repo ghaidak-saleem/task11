@@ -23,7 +23,18 @@ class User extends Authenticatable
         'password',
         'image',
         'is_admin',
+        'blocked',
     ];
+
+
+    public function getImageUrlAttribute(){
+        if($this->image){
+            $basePath='storage';
+            $imagePath= str_replace('public/','',$this->image);
+            return url("$basePath/$imagePath");
+        }
+        return null;
+    }
 
     /**
      * The attributes that should be hidden for serialization.

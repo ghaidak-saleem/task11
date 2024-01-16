@@ -1,8 +1,8 @@
-@extends('layout.app')
+@extends('layout.app1')
 @section('title','edit')
 @section('content')
 <h1>update page </h1>
-<form action="{{route('post.update',$post->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('post.update',$post->id)}}" method="POST" enctype="multipart/form-data" style="width: 35rem;">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -38,7 +38,7 @@
         @enderror
 
          @if($post->image)
-        <img src="{{asset('images/'.$post->image)}}" alt="no image" width="300px" >
+        <img src="{{asset('storage/posts_images/'.basename($post->image))}}" alt="no image" width="300px" >
         @endif
     </div>
     <button type="submit" class="btn btn-primary">Update</button>

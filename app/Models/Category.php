@@ -14,6 +14,15 @@ class Category extends Model
         'image',
     ];
 
+    public function getImageUrlAttribute(){
+        if($this->image){
+            $basePath='storage';
+            $imagePath= str_replace('public/','',$this->image);
+            return url("$basePath/$imagePath");
+        }
+        return null;
+    }
+
     public function posts(){
     return $this->hasMany(Post::class);
     }

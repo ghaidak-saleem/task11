@@ -1,8 +1,8 @@
-@extends('layout.app')
+@extends('layout.app1')
 @section('title','create')
 @section('content')
 <h1>create post: </h1>
-<form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data" style="margin: 33px">
+<form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data" style="width: 35rem;">
     @csrf
     <div class="form-group">
       <label for="p_t" class="form-label">post title:</label>

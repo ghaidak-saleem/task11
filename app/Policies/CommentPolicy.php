@@ -9,27 +9,27 @@ class CommentPolicy
 {
     public function viewAny(User $user)
     {
-        return true;
+        return  !$user->blocked;
     }
 
-    public function view(User $user,Comment $comment)
+    public function view(User $user)
     {
-        return true;
+        return  !$user->blocked;
     }
 
     public function create(User $user)
     {
-        return true;
+        return !$user->blocked;
     }
 
     public function update(User $user,Comment $comment)
     {
-        return $user->id === $comment->user_id;
+        return $user->id === $comment->user_id && !$user->blocked;
     }
 
     public function delete(User $user,Comment $comment)
     {
-        return $user->id === $comment->user_id || $user->id === $comment->post->user_id;
+        return ($user->id === $comment->user_id || $user->id === $comment->post->user_id)&& !$user->blocked;
     }
     public function __construct()
     {

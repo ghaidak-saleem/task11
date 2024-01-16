@@ -11,27 +11,27 @@ class PostPolicy
 {
     public function viewAny(User $user)
     {
-        return true;
+        return !$user->blocked;
     }
 
     public function view(User $user,Post $post)
     {
-        return true;
+        return !$user->blocked;
     }
 
     public function create(User $user)
     {
-        return true;
+        return !$user->blocked;
     }
 
     public function update(User $user,Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id === $post->user_id && !$user->blocked;
     }
 
     public function delete(User $user,Post $post)
     {
-        return $user->id === $post->user_id;
+        return ($user->id === $post->user_id && !$user->blocked) || $user->is_admin;
     }
 
     public function __construct()

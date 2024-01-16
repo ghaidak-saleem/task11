@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app1')
 @section('title','edit_comment')
 @section('content')
 <h1>edit comment: </h1>

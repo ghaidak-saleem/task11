@@ -9,26 +9,26 @@ class CategoryPolicy
 {
     public function viewAny(User $user)
     {
-        return $user->is_admin ;
+        return $user->is_admin && !$user->blocked;
     }
 
     public function view(User $user,Category $category)
     {
-        return $user->is_admin;
+        return $user->is_admin && !$user->blocked;
     }
 
     public function create(User $user)
     {
-         return $user->is_admin ;
+         return $user->is_admin && !$user->blocked;
     }
 
     public function update(User $user,Category $category)
     {
-        return $user->is_admin ;
+        return $user->is_admin && !$user->blocked;
     }
 
     public function delete(User $user,Category $category)
     {
-        return $user->is_admin;
+        return $user->is_admin && !$user->blocked;
     }
 }

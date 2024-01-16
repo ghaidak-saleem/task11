@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app1')
 @section('title','edit_category')
 @section('content')
 <h1>update category: </h1>
@@ -20,7 +20,7 @@
     @enderror
     <br>
     @if($category->image)
-        <img src="{{asset('images/'.$category->image)}}" alt="no image" width="300px" >
+        <img src="{{asset('storage/categories_images/'.basename($category->image))}}" alt="no image" width="300px" >
     @endif
     </div>
     <button type="submit" class="btn btn-primary">update</button>

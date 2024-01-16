@@ -1,10 +1,10 @@
-@extends('layout.app')
+@extends('layout.app1')
 @section('title','show')
 @section('content')
 
     <div class="card" style="width: 35rem;">
         <h3 style="color: blue">post image:</h3>
-        <img src="{{asset('images/'.$post->image)}}" class="card-img-top" alt="no image for this post" width="200px" height="250px">
+        <img src="{{asset('storage/posts_images/'.basename($post->image))}}" class="card-img-top" alt="no image for this post" width="200px" height="250px">
         <div class="card-body">
           <h3 style="color: blue">post title:</h3>
           <h5 class="card-title"> {{ $post->title }}</h5>
@@ -36,7 +36,7 @@
           @forelse ($post->comments as $comment )
           <hr>
           <h5 style="color: blue">{{$comment->user->name}}</h5>
-          <img src="{{asset('images/'.$comment->user->image)}}" width="75px" height="75px">
+          <img src="{{asset('storage/users_images/'.basename($comment->user->image))}}" width="75px" height="75px">
           <p class="card-text">{{$comment->content}}</p>
           @if(auth()->check()&& auth()->user()->can('update',$comment))
           <a href="{{route('comment.edit',[$post->id,$comment->id])}}" class="btn btn-primary">edit comment</a>

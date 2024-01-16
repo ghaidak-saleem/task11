@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app1')
 @section('title','edit_tag')
 @section('content')
 <h1>update category: </h1>

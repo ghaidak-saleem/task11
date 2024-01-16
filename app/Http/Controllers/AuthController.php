@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect('/');
         }
-        return redirect()->route('showregister');
+        return redirect()->back();
     }
 
 
@@ -48,9 +49,8 @@ class AuthController extends Controller
         $user->email =$request->input('email');
         if($request->hasFile('image')){
             $image=$request->file('image');
-            $imageName=time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/'),$imageName);
-            $user->image=$imageName;
+            $imagePath=$image->store('public/users_images');
+            $user->image=$imagePath;
         }
         $user->password=$request->input('password');
         $user->save();
